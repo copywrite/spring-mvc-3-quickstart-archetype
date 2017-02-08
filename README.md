@@ -1,24 +1,33 @@
-Spring MVC 4 Quickstart Maven Archetype
+Spring MVC 3 Quickstart Maven Archetype
 =========================================
 
 Summary
 -------
-The project is a Maven archetype for Spring MVC 4 web application.
+The project is a Maven archetype for Spring MVC 3 web application.
+
+Forked and modified from https://github.com/kolorobot/spring-mvc-quickstart-archetype.
 
 Generated project characteristics
 -------------------------
-* No-xml Spring MVC 4 web application
-* Thymeleaf, Bootstrap
-* JPA (Hibernate/HSQLDB/Spring Data JPA)
+* JPA (iBatis)
 * JUnit/Mockito
-* Spring Security
-* MongoDB (Spring Data Mongo)
 
 Prerequisites
 -------------
 
-- JDK 8
+- JDK 7
 - Maven 3
+
+Install archetype locally
+-------------------------
+
+To install the archetype in your local repository execute the following commands:
+
+```bash
+    git clone https://github.com/kolorobot/spring-mvc-quickstart-archetype.git
+    cd spring-mvc-quickstart-archetype
+    mvn clean install
+```
 
 Create a project
 ----------------
@@ -64,99 +73,3 @@ Create a new project in IntelliJ
 * Set `Version` to `1.0.0`
 * Set `Repository` to `http://kolorobot.github.io/spring-mvc-quickstart-archetype`
 * Click next and create the project
-
-Note: If you would like to create a project using archetype published in your local repository, skip repository field and make sure it is installed locally (see below).
-
-Creating a new project in Spring Tool Suite
--------------------------------------------
-
-* Create new project `File > New > Maven Project`
-* Make sure `Create a simple project` option is not selected
-* Click `Next` to navigate to `Select an Archetype` screen
-* Make sure `Include snapshot archetypes` is selected
-* Click `Add Archetype` button
-* Set `Archetype Group Id` to `pl.codeleak`
-* Set `Archetype Artifact Id` to `spring-mvc-quickstart`
-* Set `Archetype Version` to `1.0.0`
-* Set `Repository URL` to `http://kolorobot.github.io/spring-mvc-quickstart-archetype`
-* Click `OK` so the Archetype is added to the list
-* Click `Next` and fill in `Group Id`, `Artifact Id` and `Version` of your new project
-
-Note: Remember so select `Include snapshot archetypes`. 
-
-If you have any troubles with installation in Eclipse, you may want to have a look at this issue: #74
-
-
-Install archetype locally
--------------------------
-
-To install the archetype in your local repository execute the following commands:
-
-```bash
-    git clone https://github.com/kolorobot/spring-mvc-quickstart-archetype.git
-    cd spring-mvc-quickstart-archetype
-    mvn clean install
-```
-
-Create a project from a local repository
-----------------------------------------
-
-Create a new empty directory for your project and navigate into it and then run:
-
-```bash
-    mvn archetype:generate \
-        -DarchetypeGroupId=pl.codeleak \
-        -DarchetypeArtifactId=spring-mvc-quickstart \
-        -DarchetypeVersion=1.0.0 \
-        -DgroupId=my.groupid \
-        -DartifactId=my-artifactId \
-        -Dversion=version
-```
-
-Note: The above command will bootstrap a project using the archetype published in your local repository.
-
-Switching to PostgreSQL
------------------------
-
-* Add dependency to PostgreSQL driver in POM:
-
-```
-<dependency>
-    <groupId>org.postgresql</groupId>
-    <artifactId>postgresql</artifactId>
-    <version>9.4.1207</version>
-</dependency>
-```
-
-* Change `persistence.properties`:
-
-```
-dataSource.driverClassName=org.postgresql.Driver
-dataSource.url=jdbc:postgresql:postgres
-dataSource.username=postgres
-dataSource.password=postgres
-
-hibernate.dialect=org.hibernate.dialect.PostgreSQL9Dialect
-hibernate.hbm2ddl.auto=create
-hibernate.show_sql=true
-hibernate.format_sql=true
-hibernate.use_sql_comments=true
-```
-
-Enabling MongoDB repositories
------------------------------
-
-* Open MongoConfig class and uncomment the following line:
-
-```
-// @EnableMongoRepositories(basePackageClasses = Application.class)
-```
-
-Now you can add repositories to your project:
-
-```
-@Repository
-public interface MyRepository extends MongoRepository<MyDocument, String> {
-
-}
-```

@@ -1,13 +1,13 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>pl.codeleak</groupId>
-    <artifactId>spring-mvc-quickstart</artifactId>
+    <groupId>com.copywrite</groupId>
+    <artifactId>spring-mvc-3-quickstart</artifactId>
     <version>1.0.0</version>
     <packaging>maven-archetype</packaging>
     <name>Spring MVC Maven Archetype: Quickstart</name>
-    <description>Archetype for creating Spring MVC 4 web application</description>
-    <url>https://github.com/kolorobot/spring-mvc-quickstart-archetype</url>
+    <description>Archetype for creating Spring MVC 3 web application</description>
+    <url>https://github.com/kolorobot/spring-mvc-3-quickstart-archetype</url>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
