@@ -76,6 +76,9 @@
 				<fileSet filtered="true">
 					<directory>src/main/resources</directory>
 				</fileSet>
+                <fileSet filtered="true">
+                    <directory>src/main/webapp/WEB-INF</directory>
+                </fileSet>
 				<fileSet filtered="false" encoding="UTF-8">
 					<directory>src/main/webapp</directory>
 				</fileSet>
@@ -92,4 +95,15 @@
 		</module>
 	</modules>
 
+    <fileSets>
+        <fileSet filtered="false" >
+            <directory></directory>
+            <includes>
+                <include>resource.dev.properties</include>
+                <include>resource.local.properties</include>
+                <include>resource.pre.properties</include>
+                <include>resource.real.properties</include>
+            </includes>
+        </fileSet>
+    </fileSets>
 </archetype-descriptor>
