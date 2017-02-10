@@ -10,7 +10,7 @@
 
 
     <bean id="mysqlDataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close">
-        <!-- 基本属性 url、user、password -->
+        <!-- url、user、password -->
         <property name="url" value="jdbc:mysql://${db.url}/hello?useUnicode=true&amp;characterEncoding=utf-8&amp;autoReconnect=true&amp;rewriteBatchedStatements=true&amp;socketTimeout=30000&amp;connectTimeout=3000" />
         <property name="username" value="${db.username}" />
         <property name="password" value="${db.password}" />
@@ -20,13 +20,13 @@
         <property name="minIdle" value="${db.minIdle}" />
         <property name="maxActive" value="${db.maxActive}" />
 
-        <!-- 配置获取连接等待超时的时间 -->
+        <!-- connection timeout -->
         <property name="maxWait" value="10000" />
 
-        <!-- 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒 -->
+        <!-- idle connection clean interval in ms -->
         <property name="timeBetweenEvictionRunsMillis" value="60000" />
 
-        <!-- 配置一个连接在池中最小生存的时间，单位是毫秒 -->
+        <!-- minimum life time of a connection in ms -->
         <property name="minEvictableIdleTimeMillis" value="300000" />
 
         <property name="validationQuery" value="SELECT 'x'" />
