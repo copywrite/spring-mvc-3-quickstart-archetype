@@ -10,7 +10,7 @@ Forked and modified from https://github.com/kolorobot/spring-mvc-quickstart-arch
 Generated project characteristics
 -------------------------
 * JPA (iBatis)
-* JUnit/Mockito
+* Redis
 
 Prerequisites
 -------------
@@ -24,8 +24,8 @@ Install archetype locally
 To install the archetype in your local repository execute the following commands:
 
 ```bash
-    git clone https://github.com/kolorobot/spring-mvc-quickstart-archetype.git
-    cd spring-mvc-quickstart-archetype
+    git clone git@github.com:copywrite/spring-mvc-3-quickstart-archetype.git
+    cd spring-mvc-3-quickstart-archetype
     mvn clean install
 ```
 
@@ -33,43 +33,62 @@ Create a project
 ----------------
 
 ```bash
-    mvn archetype:generate \
-        -DarchetypeGroupId=pl.codeleak \
-        -DarchetypeArtifactId=spring-mvc-quickstart \
-        -DarchetypeVersion=1.0.0 \
-        -DgroupId=my.groupid \
-        -DartifactId=my-artifactId \
-        -Dversion=version \
-        -DarchetypeRepository=http://kolorobot.github.io/spring-mvc-quickstart-archetype
+    mvn archetype:generate -DarchetypeGroupId=com.copywrite
+                           -DarchetypeArtifactId=spring-mvc-3-quickstart
+                           -DarchetypeVersion=1.0.0
+                           -DgroupId=m1
+                           -DartifactId=m1
+                           -Dversion=1.0.0
+                           -DarchetypeRepository=https://github.com/copywrite/spring-mvc-3-quickstart-archetype
 ```
 
-Note: The above command will bootstrap a project using the archetype published here: http://kolorobot.github.io/spring-mvc-quickstart-archetype
+Note: The above command will bootstrap a project using the archetype published here: https://github.com/copywrite/spring-mvc-3-quickstart-archetype
 
-Run the project
+Setup prerequisites
 ----------------
+1. mysql
 
-Navigate to newly created project directory (`my-artifactId`) and then run:
+    1.1 brew install mysql
 
-```bash
-	mvn test tomcat7:run
-```
+    1.2 mysql.server start
+
+    1.3 create a new database named hello
+
+    1.4 create a new table by the following sql:
+
+        CREATE TABLE `user` (
+          `id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT 'id',
+          `name` varchar(32) NOT NULL DEFAULT '' COMMENT 'name',
+          `password` varchar(32) DEFAULT '' COMMENT 'password',
+          `salt` varchar(32) DEFAULT NULL COMMENT 'salt',
+          PRIMARY KEY (`id`)
+        ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+    1.5 add a test data row
+
+        INSERT INTO `user` (`id`, `name`, `password`, `salt`)
+        VALUES
+        	(0, 'homer', '6960aa7549c3f508dbbae1c405a0a14c', 'fj76scZ%jAd.3AscJDJCDW.wUb/dx6Qq');
+2. Redis
+
+    1.1 brew install redis
+
+    1.2 start the service: redis-server /usr/local/etc/redis.conf&
+
+Run the project in Intellij
+----------------
+1. Run -> Edit Configurations
+2. Add new Configuration
+3. Add a local Tomcat Server
+4. Start run or debug
 
 Test in the browser
 -------------------
 
 	http://localhost:8080/
 
-Note: No additional services are required in order to start the application. Mongo DB configuration is in place but it is not used in the code.
+	or
 
-Create a new project in IntelliJ
---------------------------------
+	http://localhost:8080/?username=homer&password=strong
 
-* Create new project `File > New > Project`
-* Click Maven on the left hand side of the new project dialog
-* Check `Create from archetype`
-* Click the `Add Archetype` button
-* Set `Group Id` to `pl.codeleak`
-* Set `Artifact Id` to `spring-mvc-quickstart`
-* Set `Version` to `1.0.0`
-* Set `Repository` to `http://kolorobot.github.io/spring-mvc-quickstart-archetype`
-* Click next and create the project
+Note: Should not use this authentication mechanism in production, Plaintext password in queryString is not secure.
