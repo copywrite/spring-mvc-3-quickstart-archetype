@@ -48,6 +48,7 @@ public class UserDAO extends BaseDAO{
             throw new DaoException(e);
         }
     }
+
     /**
      * get an obj
      *
@@ -104,6 +105,21 @@ public class UserDAO extends BaseDAO{
     public int delete(Long id) throws Exception{
         try{
             return sqlMapClientTemplate.update(NAMESPACE + "delete", id);
+        } catch (Exception e) {
+            throw new DaoException(e);
+        }
+    }
+
+    /**
+     * get an obj by name
+     *
+     * @param name key
+     * @return do obj
+     * @throws Exception exception
+     */
+    public UserDO getByName(String name) throws DaoException{
+        try{
+            return (UserDO) sqlMapClientTemplate.queryForObject(NAMESPACE + "selectByName", name);
         } catch (Exception e) {
             throw new DaoException(e);
         }

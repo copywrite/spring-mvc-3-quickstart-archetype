@@ -7,11 +7,15 @@
     <resultMap id="resultUserDOMap" class="${package}.home.UserDO">
         <result property="id" column="ID"/>
         <result property="name" column="NAME"/>
+        <result property="password" column="PASSWORD"/>
+        <result property="salt" column="SALT"/>
     </resultMap>
 
     <sql id="user-allCols">
          `ID`
         ,`NAME`
+        ,`PASSWORD`
+        ,`SALT`
     </sql>
 
     <select id="UserDAO.select" resultMap="resultUserDOMap">
@@ -23,4 +27,15 @@
         FROM `user` WHERE `ID` = #id#;
     ]]>
     </select>
+
+    <select id="UserDAO.selectByName" resultMap="resultUserDOMap">
+        <![CDATA[
+        SELECT
+    ]]>
+        <include refid="user-allCols"/>
+        <![CDATA[
+        FROM `user` WHERE `Name` = #name#;
+    ]]>
+    </select>
+
 </sqlMap>

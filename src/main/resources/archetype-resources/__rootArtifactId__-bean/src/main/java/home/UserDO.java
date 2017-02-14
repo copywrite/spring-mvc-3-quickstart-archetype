@@ -13,6 +13,15 @@ public class UserDO implements Serializable {
      * Name
      */
     private String name;
+    /**
+     * Password
+     */
+    private String password;
+    /**
+     * Salt
+     */
+    private String salt;
+
 
     public Long getId() {
         return id;
@@ -28,5 +37,21 @@ public class UserDO implements Serializable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getSalt() {
+        return salt;
+    }
+
+    public void setSalt(String salt) {
+        this.salt = salt;
     }
 }

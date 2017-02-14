@@ -5,5 +5,6 @@
 
     <import resource="classpath:module-beans.xml" />
     <import resource="classpath:storage/db/datasource.xml" />
+    <import resource="classpath:storage/cache/redis.xml" />
 
 </beans>

@@ -11,6 +11,7 @@ Generated project characteristics
 -------------------------
 * JPA (iBatis)
 * Redis
+* Log4j
 
 Prerequisites
 -------------

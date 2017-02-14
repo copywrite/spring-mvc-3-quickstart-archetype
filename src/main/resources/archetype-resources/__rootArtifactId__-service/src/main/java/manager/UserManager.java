@@ -1,9 +1,13 @@
 package ${package}.manager;
 
+import javax.annotation.Resource;
+
 import java.util.List;
 import ${package}.dao.UserDAO;
 import ${package}.query.UserQuery;
 import ${package}.home.UserDO;
+import ${package}.cache.UserRedisCache;
+
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -20,6 +24,8 @@ public class UserManager {
 
     @Resource
     private UserDAO userDAO;
+    @Resource
+    private UserRedisCache userRedisCache;
 
     /**
      * insert one data
@@ -51,7 +57,16 @@ public class UserManager {
      * @throws Exception exception
      */
     public UserDO get(Long id) throws Exception{
-        return userDAO.get(id);
+        UserDO userDO = userRedisCache.getUserDO(id);
+        if (userDO == null) {
+            userDO = userDAO.get(id);
+            if (userDO != null) {
+                userRedisCache.setUserDO(id, userDO);
+            }
+            return userDO;
+        } else {
+            return userDO;
+        }
     }
 
     /**
@@ -87,4 +102,14 @@ public class UserManager {
         return userDAO.delete(id);
     }
 
+    /**
+     * get an obj by name
+     *
+     * @param name key
+     * @return do obj
+     * @throws Exception exception
+     */
+    public UserDO getByName(String name) throws Exception{
+        return userDAO.getByName(name);
+    }
 }

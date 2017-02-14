@@ -19,4 +19,11 @@
 
     <aop:aspectj-autoproxy proxy-target-class="true" />
 
+    <!-- Interceptors-->
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/**"/>
+            <bean id = "loginInterceptor" class="m1.interceptor.LoginInterceptor" ></bean>
+        </mvc:interceptor>
+    </mvc:interceptors>
 </beans>
