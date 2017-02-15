@@ -13,7 +13,7 @@
 
     <dependencies>
         <dependency>
-            <groupId>${rootArtifactId}</groupId>
+            <groupId>${groupId}</groupId>
             <artifactId>${rootArtifactId}-bean</artifactId>
             <version>1.0.0-SNAPSHOT</version>
         </dependency>
